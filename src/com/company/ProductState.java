@@ -10,7 +10,7 @@ public enum ProductState {
         @Override
         public void risePrice(Product p) throws Exception {
             p.setState(ProductState.FOR_SALE);
-            System.out.println("Товар был выставлен на торги");
+            System.out.printf("[%s] - Товар был выставлен на торги\n", p.getId());
         }
 
         @Override
@@ -32,13 +32,14 @@ public enum ProductState {
         @Override
         public void risePrice(Product p) throws Exception {
             p.setFinalPrice(p.getFinalPrice()+10);
-            System.out.println("Цена на товар поднялась на 10 пунктов");
+            System.out.printf("[%s] - Цена на товар поднялась на 10 пунктов\n", p.getId());
         }
 
         @Override
         public void withdraw(Product p) throws Exception {
             if (p.getFinalPrice() == 0) {
                 p.setState(ProductState.IN_STOCK);
+                System.out.printf("[%s] - Товар был возвращен на склад\n", p.getId());
             } else {
                 throw new Exception("товар уже в резерве, можно только выдать");
             }
@@ -48,7 +49,7 @@ public enum ProductState {
         public void giveToTheWinner(Product p) throws Exception {
             if (p.getFinalPrice() > 0) {
                 p.setState(ProductState.SOLD);
-                System.out.println("Товар продан на торгах");
+                System.out.printf("[%s] - Товар продан на торгах\n", p.getId());
             } else {
                 throw new Exception("нельзя отдать товар бесплатно");
             }

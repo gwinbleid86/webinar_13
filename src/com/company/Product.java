@@ -29,24 +29,44 @@ public class Product {
         this.finalPrice = finalPrice;
     }
 
-    public int getStartPrice() {
-        return startPrice;
+    public String getId() {
+        return id;
     }
 
     public void setState(ProductState state) {
         this.state = state;
     }
 
-    public void startSale() {
-
+    public void startSale(){
+        try {
+            state.startSale(this);
+        } catch (Exception e) {
+            printMessage(this.id, e.getMessage());
+        }
     }
     public void risePrice(){
-
+        try {
+            state.risePrice(this);
+        } catch (Exception e) {
+            printMessage(this.id, e.getMessage());
+        }
     }
     public void withdraw(){
-
+        try {
+            state.withdraw(this);
+        } catch (Exception e) {
+            printMessage(this.id, e.getMessage());
+        }
     }
     public void giveToTheWinner(){
+        try {
+            state.giveToTheWinner(this);
+        } catch (Exception e) {
+            printMessage(this.id, e.getMessage());
+        }
+    }
 
+    private void printMessage(String id, String e){
+        System.out.printf("[%s] - %s\n", id, e);
     }
 }
