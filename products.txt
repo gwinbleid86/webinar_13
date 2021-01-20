@@ -1,0 +1,37 @@
+[
+  {
+    "id": "ID_BQUUKJMBRW",
+    "name": "YCPPX",
+    "startPrice": 124,
+    "finalPrice": 0,
+    "state": "IN_STOCK"
+  },
+  {
+    "id": "ID_DHKJKBLJUX",
+    "name": "UIDXN",
+    "startPrice": 2864,
+    "finalPrice": 0,
+    "state": "IN_STOCK"
+  },
+  {
+    "id": "ID_EYCBJEOUYM",
+    "name": "RJVPC",
+    "startPrice": 804,
+    "finalPrice": 0,
+    "state": "IN_STOCK"
+  },
+  {
+    "id": "ID_DQTFFTIKOM",
+    "name": "TJOAC",
+    "startPrice": 1312,
+    "finalPrice": 0,
+    "state": "SOLD"
+  },
+  {
+    "id": "ID_SGAWBHBHUN",
+    "name": "IXIFF",
+    "startPrice": 952,
+    "finalPrice": 0,
+    "state": "FOR_SALE"
+  }
+]
