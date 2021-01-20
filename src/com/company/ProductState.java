@@ -1,16 +1,21 @@
 package com.company;
 
+import com.company.strategy.Bronze;
+import com.company.strategy.Gold;
+import com.company.strategy.Silver;
+import com.company.strategy.Strategy;
+
 public enum ProductState {
     IN_STOCK{
         @Override
         public void startSale(Product p) throws Exception {
-            throw new Exception("Товар еще не учавствует в торгах");
+            p.setState(ProductState.FOR_SALE);
+            System.out.printf("[%s] - Товар был выставлен на торги\n", p.getId());
         }
 
         @Override
         public void risePrice(Product p) throws Exception {
-            p.setState(ProductState.FOR_SALE);
-            System.out.printf("[%s] - Товар был выставлен на торги\n", p.getId());
+            throw new Exception("Товар еще не учавствует в торгах");
         }
 
         @Override
@@ -24,6 +29,7 @@ public enum ProductState {
         }
     },
     FOR_SALE {
+        private final CodeGenerator generator = new CodeGenerator();
         @Override
         public void startSale(Product p) throws Exception {
             throw new Exception("товар уже участвует в торгах");
@@ -47,9 +53,23 @@ public enum ProductState {
 
         @Override
         public void giveToTheWinner(Product p) throws Exception {
+            Strategy s;
             if (p.getFinalPrice() > 0) {
+                if (p.getFinalPrice() + p.getStartPrice() >= 100) {
+                    s = new Gold();
+                    p.setHonorary_code("Gold-"+s.getStatus(p.getId()));
+                }
+                if ((p.getFinalPrice() + p.getStartPrice()) >= 500 && (p.getFinalPrice() + p.getStartPrice()) < 1000) {
+                    s = new Silver();
+                    p.setHonorary_code("Silver-"+s.getStatus(p.getId()));
+                }
+                if (p.getFinalPrice() + p.getStartPrice() < 500) {
+                    s = new Bronze();
+                    p.setHonorary_code("Bronze-"+s.getStatus(p.getId()));
+                }
+
                 p.setState(ProductState.SOLD);
-                System.out.printf("[%s] - Товар продан на торгах\n", p.getId());
+                System.out.printf("[%s] - Товар продан на торгах за %s\n", p.getId(), p.getFinalPrice()+p.getStartPrice());
             } else {
                 throw new Exception("нельзя отдать товар бесплатно");
             }

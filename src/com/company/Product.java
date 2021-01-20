@@ -15,10 +15,18 @@ public class Product {
         Product p = new Product();
         p.id = "ID_"+Util.makeName(10);
         p.name = Util.makeName(5);
-        p.startPrice = r.nextInt(10)*4;
+        p.startPrice = (r.nextInt(1000)+2)*4;
         p.finalPrice = 0;
         p.state = state;
         return p;
+    }
+
+    public void setHonorary_code(String honorary_code) {
+        this.honorary_code = honorary_code;
+    }
+
+    public int getStartPrice() {
+        return startPrice;
     }
 
     public int getFinalPrice() {
@@ -68,5 +76,16 @@ public class Product {
 
     private void printMessage(String id, String e){
         System.out.printf("[%s] - %s\n", id, e);
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "name='" + name + '\'' +
+                ", startPrice=" + startPrice +
+                ", finalPrice=" + finalPrice +
+                ", honorary_code='" + honorary_code + '\'' +
+                ", state=" + state +
+                '}';
     }
 }

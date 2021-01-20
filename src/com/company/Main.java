@@ -6,9 +6,9 @@ public class Main {
 
         Product[] products = {
                 Product.make(ProductState.IN_STOCK),
-                Product.make(ProductState.FOR_SALE),
                 Product.make(ProductState.IN_STOCK),
-                Product.make(ProductState.SOLD),
+                Product.make(ProductState.IN_STOCK),
+                Product.make(ProductState.IN_STOCK),
                 Product.make(ProductState.IN_STOCK)
         };
 
@@ -16,6 +16,7 @@ public class Main {
             p.startSale();
             p.risePrice();
             p.giveToTheWinner();
+            System.out.println(p.toString());
         }
 
     }
